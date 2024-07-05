@@ -5,6 +5,7 @@
 import fs from "fs";
 import http from "http";
 import path from "path";
+import os from "os";
 
 let index = path.join(process.cwd(),"index.html")
 let contact = path.join(process.cwd(),"contact.html")
