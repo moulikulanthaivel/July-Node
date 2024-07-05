@@ -1,0 +1,48 @@
+import fs from "fs";
+import http from "http";
+import path from "path";
+
+let index = path.join(process.cwd(),"index.html")
+let contact = path.join(process.cwd(),"contact.html")
+let service = path.join(process.cwd(),"service.html")
+let about = path.join(process.cwd(),"about.html")
+
+let App = http.createServer((req,res)=>{
+
+    if(req.url === "/" || req.url === "/home"){
+        fs.readFile(index , "utf-8" , (err,data)=>{
+            if(err) throw err
+            res.end(data);
+        });
+    }
+
+    else if(req.url === "/contact"){
+        fs.readFile(contact, "utf-8" , (err,data)=>{
+            if(err) throw err
+            res.end(data)
+        })
+    }
+
+    else if(req.url === "/about"){
+        fs.readFile(about, "utf-8" , (err,data)=>{
+            if(err) throw err;
+            res.end(data)
+        })
+    }
+
+    else if(req.url === "/service"){
+        fs.readFile(service,"utf-8" , (err,data)=>{
+            if(err) throw err;
+            res.end(data)
+        })
+    }
+
+})
+
+App.listen("8080","127.0.0.1", (err)=>{
+    if(err) throw err
+    console.log(`http://127.0.0.1:8080`)
+})
+
+// what is fat arrow fnction ?
+// alternating syntax of creating function.
