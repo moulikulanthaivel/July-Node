@@ -1,3 +1,7 @@
+// what is fat arrow fnction ?
+// alternating syntax of creating function.
+
+
 import fs from "fs";
 import http from "http";
 import path from "path";
@@ -6,6 +10,7 @@ let index = path.join(process.cwd(),"index.html")
 let contact = path.join(process.cwd(),"contact.html")
 let service = path.join(process.cwd(),"service.html")
 let about = path.join(process.cwd(),"about.html")
+let blogs = path.join(process.cwd(),"blogs.html")
 
 let App = http.createServer((req,res)=>{
 
@@ -37,6 +42,13 @@ let App = http.createServer((req,res)=>{
         })
     }
 
+    else if(req.url === "/blogs"){
+        fs.readFile(blogs, "utf-8", (err,data)=>{
+            if(err) throw err;
+            res.end(data)
+        })
+    }
+
 })
 
 App.listen("8080","127.0.0.1", (err)=>{
@@ -44,5 +56,3 @@ App.listen("8080","127.0.0.1", (err)=>{
     console.log(`http://127.0.0.1:8080`)
 })
 
-// what is fat arrow fnction ?
-// alternating syntax of creating function.
