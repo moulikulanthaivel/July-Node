@@ -1,4 +1,4 @@
-// what is fat arrow fnction ?
+// what is fat arrow function ?
 // alternating syntax of creating function.
 
 
