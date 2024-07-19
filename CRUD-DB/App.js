@@ -1,32 +1,27 @@
-import dotenv from "dotenv"
-import express from "express"
-import empRouter from "./routing/empRouter.js"
-import mongoose from "mongoose"
+import express, { Router } from "express";
+import dotenv from "dotenv";
+import chalk from "chalk";
+import morgan from "morgan";
+import empRouter from "./router/empRouter.js";
 
-const App = express()
+let App = express()
 
-dotenv.config({path:"./setting/config.env"})
+dotenv.config({path:"./config/dev.env"})
+
 let port = process.env.PORT
 let host = process.env.HOST
-let mongoUrl = process.env.MONGO_URL
+let mongo_url = process.env.MONGO_URL
+
+App.use(morgan('dev'))  //morgan
 
 App.use("/emp",empRouter)
 
 App.get("/",(req,res)=>{
-    res.status(200).json({"msg":"root request"})
+    res.status(200).json({"msg":"Root request"})
 })
 
-mongoose.connect(mongoUrl , {
-    useUnifiedTopology : true,
-    useNewUrlParser : true,
-} ).then((response)=>{
-    console.log("connected successfully")
-}).catch((err)=>{
-    console.error(err);
-    process.exit(1); // stop the node js process if unable to connect to mongodb
-})
 
 App.listen(port,host,(err)=>{
     if(err) throw err
-    console.log(`server runnning successfully : http://${host}:${port}/`)
+    console.log (chalk.yellowBright(`server running successfully : http://${host}:${port}/`))
 })

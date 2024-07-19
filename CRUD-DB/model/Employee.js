@@ -1,25 +1,11 @@
 import mongoose from "mongoose";
 
-let empSchema = new mongoose.Schema({
-
-    eid : {
-        type:Number,
-        required:true
-        },
-
-    ename : {
-        type:String,
-        required:true
-        },
-
-     salary: {
-        type:Number,
-        required:true
-        }                  
-                    
+let emp_Schema = mongoose.Schema({
+    eid:{type:String , required:true},
+    ename:String,
+    esal:Number
 })
 
-let Employee = mongoose.model("employees", empSchema)
+let Employee = mongoose.model("employees", emp_Schema)
 
 export default Employee
-
