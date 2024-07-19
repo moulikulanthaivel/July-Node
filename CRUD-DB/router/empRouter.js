@@ -1,5 +1,5 @@
 import express from "express";
-
+import empModels from "../models/employees.js"
 
 
 let empRouter = express.Router()

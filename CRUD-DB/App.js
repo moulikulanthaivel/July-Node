@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import chalk from "chalk";
 import morgan from "morgan";
 import empRouter from "./router/empRouter.js";
+import mongoose from "mongoose";
 
 let App = express()
 
@@ -19,6 +20,13 @@ App.use("/emp",empRouter)
 App.get("/",(req,res)=>{
     res.status(200).json({"msg":"Root request"})
 })
+
+mongoose.connect(mongo_url).then((resp)=>{
+    console.log(' DB connected successfully')
+}).catch((err)=>{
+    console.error(err);
+    process.exit(1);
+});
 
 
 App.listen(port,host,(err)=>{
